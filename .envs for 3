@@ -1,0 +1,9 @@
+dev.env
+METABASE_SECRET_KEY=your-dev-secret-key
+
+
+test.env
+METABASE_SECRET_KEY=your-test-secret-key
+
+prod.env
+METABASE_SECRET_KEY=your-prod-secret-key
