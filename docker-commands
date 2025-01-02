@@ -1,0 +1,26 @@
+container 1
+ ```bash 
+docker run -d -p 3010:3000 \
+  -e MB_DB_FILE=/metabase.db/metabase.db \
+  -e MB_PLUGINS_DIR=/app/plugins \
+  -e MB_ENVIRONMENT=staging \
+  -v metabase-data-sai:/metabase.db \
+  --name sai \
+  metabase/metabase-enterprise
+```
+container 2
+```bash
+docker run -d -p 3011:3000 \
+  -e MB_DB_FILE=/metabase.db/metabase.db \
+  -e MB_PLUGINS_DIR=/app/plugins \
+  -e MB_ENVIRONMENT=staging \
+  -v metabase-data-sai1:/metabase.db \
+  --name sai1 \
+  metabase/metabase-enterprise
+```
+```bash
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+    
