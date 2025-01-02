@@ -1,0 +1,46 @@
+version: "3.9"
+services:
+  dev:
+    image: metabase/metabase-enterprise
+    container_name: metabase_dev
+    ports:
+      - 3010:3000
+    environment:
+      - MB_DB_FILE=/metabase.db/metabase.db
+      - MB_PLUGINS_DIR=/app/plugins
+      - MB_ENVIRONMENT=development
+    env_file:
+      - dev.env
+    volumes:
+      - metabase-data-dev:/metabase.db
+  test:
+    image: metabase/metabase-enterprise
+    container_name: metabase_test
+    ports:
+      - 3011:3000
+    environment:
+      - MB_DB_FILE=/metabase.db/metabase.db
+      - MB_PLUGINS_DIR=/app/plugins
+      - MB_ENVIRONMENT=staging
+    env_file:
+      - test.env
+    volumes:
+      - metabase-data-test:/metabase.db
+  prod:
+    image: metabase/metabase-enterprise
+    container_name: metabase_prod
+    ports:
+      - 3012:3000
+    environment:
+      - MB_DB_FILE=/metabase.db/metabase.db
+      - MB_PLUGINS_DIR=/app/plugins
+      - MB_ENVIRONMENT=production
+    env_file:
+      - prod.env
+    volumes:
+      - metabase-data-prod:/metabase.db
+
+volumes:
+  metabase-data-dev:
+  metabase-data-test:
+  metabase-data-prod:
