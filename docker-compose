@@ -1,0 +1,40 @@
+cat docker-compose.yml 
+version: "3.9"
+services:
+  sai:
+    image: metabase/metabase-enterprise
+    container_name: sai
+    ports:
+      - "3010:3000"
+    environment:
+      MB_DB_FILE: /metabase.db/metabase.db
+      MB_PLUGINS_DIR: /app/plugins
+      MB_ENVIRONMENT: staging
+    volumes:
+      - metabase-data-sai:/metabase.db
+    networks:
+      - metanet
+    restart: unless-stopped
+
+  sai1:
+    image: metabase/metabase-enterprise
+    container_name: sai1
+    ports:
+      - "3011:3000"
+    environment:
+      MB_DB_FILE: /metabase.db/metabase.db
+      MB_PLUGINS_DIR: /app/plugins
+      MB_ENVIRONMENT: staging
+    volumes:
+      - metabase-data-sai1:/metabase.db
+    networks:
+      - metanet
+    restart: unless-stopped
+
+volumes:
+  metabase-data-sai:
+  metabase-data-sai1:
+
+networks:
+  metanet:
+    driver: bridge
