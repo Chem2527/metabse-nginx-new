@@ -1,0 +1,10 @@
+backup existing data
+
+mv /metabase.db/metabase.db /metabase.db/metabase.db.bak
+
+copy from dev container to local
+
+docker cp metabase_dev:/metabase.db/metabase.db /root/metabase.db
+
+copy from local to prod
+docker cp /root/metabase.db metabase_prod:/metabase.db/metabase.db
