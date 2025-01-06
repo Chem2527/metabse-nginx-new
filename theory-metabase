@@ -1,1 +1,13 @@
 metabase.db contains all metadata which includes queries, dashboards, cards, metrics, user accounts ,permissions, db connections
+ 
+
+docker exec -it metabase_dev bash
+
+  cd /metabase.db
+
+ mv metabase.db metabase.db.bak
+  ls
+ docker cp metabase_prod:/metabase.db/metabase.db /root/metabase.db
+ docker cp /root/metabase.db metabase_dev:/metabase.db/metabase.db
+  docker exec -it metabase_dev bash
+  docker restart metabase_dev
