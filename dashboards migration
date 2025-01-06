@@ -3,6 +3,8 @@ backup existing data
 mv /metabase.db/metabase.db /metabase.db/metabase.db.bak
 
 copy from dev container to local
+docker cp <container_name>:<path_to_file_or_folder_inside_container> <path_to_destination_on_host>
+
 
 docker cp metabase_dev:/metabase.db/metabase.db /root/metabase.db
 
