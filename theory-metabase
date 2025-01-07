@@ -14,3 +14,14 @@ Copy Database from Local to destination
 docker cp /root/metabase.db destcontainername:/metabase.db/metabase.db
 
 docker restart <dest container>
+
+
+
+sql installation
+```bash
+yum update -y
+sudo yum install -y mssql-server-selinux
+sudo curl -o /etc/yum.repos.d/mssql-server.repo https://packages.microsoft.com/config/rhel/9/mssql-server-2022.repo
+sudo yum install -y mssql-server
+sudo /opt/mssql/bin/mssql-conf setup
+```
