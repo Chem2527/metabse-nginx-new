@@ -1,13 +1,16 @@
 metabase.db contains all metadata which includes queries, dashboards, cards, metrics, user accounts ,permissions, db connections
  
 
-docker exec -it metabase_dev bash
+Backup Existing Data in dest container
+docker exec -it <destination container where we want to migrate the dashboards & everything > bash
+mv /metabase.db/metabase.db /metabase.db/metabase.db.bak
 
-  cd /metabase.db
 
- mv metabase.db metabase.db.bak
-  ls
- docker cp metabase_prod:/metabase.db/metabase.db /root/metabase.db
- docker cp /root/metabase.db metabase_dev:/metabase.db/metabase.db
-  docker exec -it metabase_dev bash
-  docker restart metabase_dev
+Copy Database from source container to Local
+
+docker cp source container name:/metabase.db/metabase.db /root/metabase.db
+
+Copy Database from Local to destination
+docker cp /root/metabase.db destcontainername:/metabase.db/metabase.db
+
+docker restart <dest container>
