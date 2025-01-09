@@ -1,0 +1,51 @@
+1. Backup Existing Data in the Destination Container
+On the destination server (16.170.172.232), back up the existing metabase.db.mv.db and metabase.db.trace.db files inside the metabase_new_prod container:
+
+ssh <username>@16.170.172.232
+docker exec -it metabase_new_prod bash -c "mv /metabase.db/metabase.db.mv.db /metabase.db/metabase.db.mv.db.bak"
+docker exec -it metabase_new_prod bash -c "mv /metabase.db/metabase.db.trace.db /metabase.db/metabase.db.trace.db.bak"
+________________________________________
+2. Copy Database File from the Source Container to the Local Machine
+On the source server (16.16.63.76), copy the metabase.db.mv.db and metabase.db.trace.db files from the metabase_prod container to the local filesystem. Since the files are nested under /metabase.db/metabase.db/, you need to specify the correct path.
+
+ssh <username>@16.16.63.76
+docker cp metabase_prod:/metabase.db/metabase.db/metabase.db.mv.db /root/metabase.db.mv.db
+docker cp metabase_prod:/metabase.db/metabase.db/metabase.db.trace.db /root/metabase.db.trace.db
+________________________________________
+3. Transfer the Database Files to the Destination Server
+Transfer the metabase.db.mv.db and metabase.db.trace.db files from the source server to the destination server using scp:
+
+scp -i "nexturn.pem" /root/metabase.db.mv.db ec2-user@16.170.172.232:/home/ec2-user/metabase.db.mv.db
+scp -i "nexturn.pem" /root/metabase.db.trace.db ec2-user@16.170.172.232:/home/ec2-user/metabase.db.trace.db
+
+sudo mv /home/ec2-user/metabase.db.mv.db /root/metabase.db.mv.db
+sudo mv /home/ec2-user/metabase.db.trace.db /root/metabase.db.trace.db
+
+
+________________________________________
+4. Replace the Database Files in the Destination Container
+On the destination server, copy the transferred database files into the metabase_new_prod container:
+
+docker cp /root/metabase.db.mv.db metabase_new_prod:/metabase.db/metabase.db.mv.db
+docker cp /root/metabase.db.trace.db metabase_new_prod:/metabase.db/metabase.db.trace.db
+________________________________________
+5. Restart the Destination Container
+Restart the metabase_new_prod container to apply the changes:
+bash
+Copy code
+docker restart metabase_new_prod
+________________________________________
+6. Verify Migration
+1.	Open the destination Metabase instance in your browser:
+vbnet
+Copy code
+http://16.170.172.232/new-production
+2.	Log in and verify that all dashboards, collections, and settings from the source are present.
+________________________________________
+Notes
+•	The database files in the source and destination containers are in H2 format (metabase.db.mv.db and metabase.db.trace.db). Ensure the versions of Metabase in both containers are the same or the destination version is newer.
+•	Always monitor the logs after restarting the destination container to confirm successful migration:
+bash
+Copy code
+docker logs -f metabase_new_prod
+
