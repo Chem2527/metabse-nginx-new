@@ -1,0 +1,7 @@
+sudo certbot certonly --manual --preferred-challenges dns \
+-d *.127.co -d 127.co -d *.launch27.co -d launch27.co -d *.launch27.io -d launch27.io \
+--cert-name 127.co
+
+
+after running this command need to update
+Acme-challenge.domain inside hosted zones in aws
