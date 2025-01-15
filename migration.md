@@ -3,9 +3,9 @@ Migrate Production Dashboards to staging
 1. Backup Existing Data in the Staging Container:
 
 •	On the Staging server, back up the existing database files inside the staging container:
-
+```bash
 docker exec -it <staging container name> bash -c "mv /metabase.db/metabase.db.mv.db /metabase.db/metabase.db.mv.db.bak"
-
+```
 docker exec -it <staging container name> bash -c "mv /metabase.db/metabase.db.trace.db /metabase.db/metabase.db.trace.db.bak"
 
 2. Copy Database File from the Production Container to the Production server:
