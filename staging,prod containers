@@ -1,0 +1,20 @@
+Metabase Staging Container
+
+docker run -d -p 3010:3000 \
+  -e MB_DB_FILE=/metabase.db/metabase.db \
+  -e MB_PLUGINS_DIR=/app/plugins \
+  -e MB_ENVIRONMENT=staging \
+  -v metabase-data-staging:/metabase.db \
+  --name metabase_staging \
+  metabase/metabase-enterprise
+
+  
+Metabase Production Container
+
+docker run -d -p 3011:3000 \
+  -e MB_DB_FILE=/metabase.db/metabase.db \
+  -e MB_PLUGINS_DIR=/app/plugins \
+  -e MB_ENVIRONMENT=production \
+  -v metabase-data-prod:/metabase.db \
+  --name metabase_prod \
+  metabase/metabase-enterprise
