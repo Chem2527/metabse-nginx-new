@@ -14,13 +14,13 @@ docker cp <prod container name>:/metabase.db/metabase.db/metabase.db.trace.db /r
 
 3. Transfer the Database Files to the Staging Server:
 •	Transfer the database files from the Production server to the Staging server using scp:
-scp -i "<.pem file>" /root/metabase.db.mv.db ec2-user@<stagingserver>:/home/ec2-user/metabase.db.mv.db
+scp -i "<.pem file>" /root/metabase.db.mv.db ec2-user@<stagingserver>:/home/ubuntu/metabase.db.mv.db
 
-scp -i "<.pem file>" /root/metabase.db.trace.db ec2-user@<stagingserver>:/home/ec2-user/metabase.db.trace.db
+scp -i "<.pem file>" /root/metabase.db.trace.db ec2-user@<stagingserver>:/home/ubuntu/metabase.db.trace.db
 •	Move the transferred files to the root directory on the staging server:
-sudo mv /home/ec2-user/metabase.db.mv.db /root/metabase.db.mv.db
+sudo mv /home/ubuntu/metabase.db.mv.db /root/metabase.db.mv.db
 
-sudo mv /home/ec2-user/metabase.db.trace.db /root/metabase.db.trace.db
+sudo mv /home/ubuntu/metabase.db.trace.db /root/metabase.db.trace.db
 
 4. Replace the Database Files in the Staging Container:
 •	On the staging server, copy the transferred database files into the Staging container:
