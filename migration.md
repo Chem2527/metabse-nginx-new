@@ -1,4 +1,4 @@
-# Migrate metabase Dashboards from Production to Staging environment
+# Migrating Metabase Dashboards: Production to Staging Environment Setup
 
 ## 1. Backup Existing Data in the Staging Container:
 On the Staging server, back up the existing database files inside the staging container:
