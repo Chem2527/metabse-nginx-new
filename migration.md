@@ -44,7 +44,7 @@ docker cp /root/metabase.db.trace.db <staging container name>:/metabase.db/metab
 ```
 
 ## 5. Restart the Staging Container:
-	Restart the Metabase staging container to apply the changes:
+Restart the Metabase staging container to apply the changes:
 ```bash
 docker restart <staging container name>
 ```
