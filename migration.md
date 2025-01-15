@@ -51,7 +51,7 @@ docker restart <staging container name>
 
 ## 6. Verify Migration:
 ```bash
-•	Open the staging Metabase instance in your browser.
-•	Log in and verify that all dashboards, collections, and settings from the source are present.
-•	Open Metabase settings and update the environment variables and configurations to reflect the staging environment.
+Open the staging Metabase instance in your browser.
+Log in and verify that all dashboards, collections, and settings from the source are present.
+Open Metabase settings and update the environment variables and configurations to reflect the staging environment.
 ```
