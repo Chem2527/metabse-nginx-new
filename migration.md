@@ -55,3 +55,6 @@ Open the staging Metabase instance in your browser.
 Log in and verify that all dashboards, collections, and settings from the source are present.
 Open Metabase settings and update the environment variables and configurations to reflect the staging environment.
 ```
+
+<img width="802" alt="image" src="https://github.com/user-attachments/assets/b7576920-4cad-46b3-aff7-9bd3c8867fb5" />
+
