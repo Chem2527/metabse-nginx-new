@@ -18,14 +18,14 @@ docker cp <prod container name>:/metabase.db/metabase.db/metabase.db.mv.db /root
 docker cp <prod container name>:/metabase.db/metabase.db/metabase.db.trace.db /root/metabase.db.trace.db
 ```
 ## 3. Transfer the Database Files to the Staging Server:
-Transfer the database files from the Production server to the Staging server using scp:
+### Transfer the database files from the Production server to the Staging server using scp:
 ```bash
 scp -i "<.pem file>" /root/metabase.db.mv.db ubuntu@<stagingserver>:/home/ubuntu/metabase.db.mv.db
 ```
 ```bash
 scp -i "<.pem file>" /root/metabase.db.trace.db ubntu@<stagingserver>:/home/ubuntu/metabase.db.trace.db
 ```
-•	Move the transferred files to the root directory on the staging server:
+### Move the transferred files to the root directory on the staging server:
 
 ```bash
 sudo mv /home/ubuntu/metabase.db.mv.db /root/metabase.db.mv.db
