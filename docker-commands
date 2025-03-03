@@ -1,3 +1,13 @@
+docker run -d -p 3010:3000 \
+  -e MB_DB_FILE=/metabase.db/metabase.db \
+  -e MB_PLUGINS_DIR=/app/plugins \
+  -e MB_ENVIRONMENT=staging \
+  -e "MB_SITE_URL=https://metabase.poc.nexturn.com" \
+  -v metabase-data-sai:/metabase.db \
+  --name sai \
+  metabase/metabase-enterprise
+
+
 container 1
  ```bash 
 docker run -d -p 3010:3000 \
