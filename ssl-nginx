@@ -3,5 +3,13 @@ sudo certbot certonly --manual --preferred-challenges dns \
 --cert-name l27.co
 
 
+sudo certbot certonly --manual --preferred-challenges dns \
+$DOMAINS \
+--cert-name l27.co
+
+
+
 after running this command need to update
 Acme-challenge.domain inside hosted zones in aws
+
+sudo systemctl restart nginx
